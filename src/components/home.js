@@ -29,15 +29,32 @@ export const Home = () => {
 
     console.log({amount});
 
-    const handleBuy = () => {
-        fetch(`${url}/chickens/chicken`, {method: 'POST'})
+    const handleBuyChicken = () => {
+        fetch(`${url}/chickens/buy`, {method: 'POST'})
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error(error));
     }
 
-    const handleSell = () => {
-        console.log("Se vendió");
+    const handleBuyEgg = () => {
+        fetch(`${url}/eggs/buy`, {method: 'POST'})
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));;
+    }
+
+    const handleSellChicken = () => {
+        fetch(`${url}/chickens/sell`, {method: 'POST'})
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    }
+
+    const handleSellEgg = () => {
+        fetch(`${url}/eggs/sell`, {method: 'POST'})
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));;
     }
 
   return (
@@ -75,6 +92,10 @@ export const Home = () => {
                                     </tr>
                                 </table>
                             </CardActions>
+                            <CardActions>
+                                <Button size="small" onClick={handleSellChicken}>Drop Chicken</Button>
+                                <Button size="small" onClick={handleSellEgg}>Drop Egg</Button>
+                            </CardActions>
                         </Card>
                         </div>
                         <div className="farmCards">
@@ -89,11 +110,11 @@ export const Home = () => {
                             <CardActions className="mainPriceCard">
                                 <div className="priceCard">
                                     <h4>$200</h4>
-                                    <Button size="small" onClick={handleBuy}>Buy</Button>
+                                    <Button size="small" onClick={handleBuyChicken}>Buy</Button>
                                 </div>
                                 <div className="priceCard">
                                     <h4>$400</h4>
-                                    <Button size="small" onClick={handleSell}>Sell</Button>
+                                    <Button size="small" onClick={handleSellChicken}>Sell</Button>
                                 </div>
                             </CardActions>
                         </Card>
@@ -110,11 +131,11 @@ export const Home = () => {
                             <CardActions className="mainPriceCard">
                             <div className="priceCard">
                                     <h4>$20</h4>
-                                    <Button size="small" onClick={handleBuy}>Buy</Button>
+                                    <Button size="small" onClick={handleBuyEgg}>Buy</Button>
                                 </div>
                                 <div className="priceCard">
                                     <h4>$40</h4>
-                                    <Button size="small" onClick={handleSell}>Sell</Button>
+                                    <Button size="small" onClick={handleSellEgg}>Sell</Button>
                                 </div>
                             </CardActions>
                         </Card>
