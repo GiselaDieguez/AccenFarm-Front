@@ -20,6 +20,7 @@ body {
 .farmCards {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .chickenCard {
@@ -35,10 +36,8 @@ body {
 footer {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 74px;
-
     color: white;
+    margin: 1vh;
 }
 
 .accenLogo {
@@ -62,13 +61,14 @@ h4{
     display: flex;
     justify-content: center;
     color: white;
+    overflow-y: scroll;
 }
 .stTable {
     font-size: 30px;
-    font-weight: 700;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     text-align: center;
+    margin: 10px;
 }
 .trTable {
     text-decoration: underline;
@@ -76,3 +76,19 @@ h4{
 .tdTable {
     padding: 20px;
 }
+
+.footer {
+    text-align: center;
+}
+
+.quantityTbl {
+    text-align: center;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+  }

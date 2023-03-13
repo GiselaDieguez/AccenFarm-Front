@@ -11,7 +11,7 @@ export const Status = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-  fetch(`${url}/farm/all`)
+  fetch(`${url}/farm/all/products`)
     .then((response) => response.json())
     .then((res) => {
       setValues(res);
@@ -19,7 +19,6 @@ export const Status = () => {
   });
 }, [loading]);
 
-console.log(values);
   return (
     <>
     <Header/>
@@ -47,15 +46,17 @@ console.log(values);
                   <th className='tdTable'>N°</th>
                   <th className='tdTable'>Time</th>
                   <th className='tdTable'>Product</th>
+                  <th className='tdTable'>Type</th>
                   <th className='tdTable'>Amount</th>
                 </tr>
           {
-              values.content.map((farm, index) => (
+              values.map((farm, index) => (
                 < >
                 <tr key={index}>
-                  <td className='tdTable'>{farm.transactionid}</td>
+                  <td className='tdTable'>{index + 1}</td>
                   <td className='tdTable'>{farm.time}</td>
-                  <td className='tdTable'>{farm.productid}</td>
+                  <td className='tdTable'>{farm.productnm}</td>
+                  <td className='tdTable'>{farm.transactionnm}</td>
                   <td className='tdTable'>{farm.transactionamt}</td>
                 </tr>
                 </>
