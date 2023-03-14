@@ -8,53 +8,108 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import chicken from "./styles/images/3.jpg"
-import egg from "./styles/images/4.jpg"
+import egg from "./styles/images/6.png"
 import { url } from "../api"
 import { Footer } from "./footer";
 import egg1 from './styles/images/1.gif'
   
 export const Home = () => {
     
-    const [amount, setAmount] = useState();
+    const [amountChicken, setAmountChicken] = useState();
+    const [amountEgg, setAmountEgg] = useState();
+    const [totalcash, setCash] = useState();
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`${url}/products/productsamt`)
+        fetch(`${url}/products/productsamt/chicken`)
           .then((response) => response.json())
           .then((res) => {
-            setAmount(res)
-            setLoading(false);
-        });
+            setAmountChicken(res)
+            fetch(`${url}/products/productsamt/egg`)
+            .then((response) => response.json())
+            .then((res) => {
+              setAmountEgg(res)
+              fetch(`${url}/cash/all`)
+              .then((response) => response.json())
+              .then((res) => {
+                setCash(res)
+                setLoading(false);
+            });
+          }); 
+        });       
       },[loading]);
 
-    console.log({amount});
 
     const handleBuyChicken = () => {
-        fetch(`${url}/chickens/buy`, {method: 'POST'})
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
+        if (amountChicken[0].totalchickens < 10 && totalcash[0].totalcash > 200) {
+            fetch(`${url}/chickens/buy`, {method: 'POST'})
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+            window.location.reload();   
+        }else{
+            alert("Operation not available, verify you have enough money or have the stock available.")
+        }
     }
 
     const handleBuyEgg = () => {
-        fetch(`${url}/eggs/buy`, {method: 'POST'})
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));;
+        if (amountEgg[0].totaleggs < 10 && totalcash[0].totalcash > 20) {
+            fetch(`${url}/eggs/buy`, {method: 'POST'})
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+            window.location.reload();   
+        }else{
+            alert("You can't buy more than 10 eggs.")
+        }
     }
 
     const handleSellChicken = () => {
-        fetch(`${url}/chickens/sell`, {method: 'POST'})
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
+        if (amountChicken[0].totalchickens > 0) {
+            fetch(`${url}/chickens/sell`, {method: 'POST'})
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+            window.location.reload();   
+        }else{
+            alert("You don't have enough stock.")
+        }
     }
 
     const handleSellEgg = () => {
-        fetch(`${url}/eggs/sell`, {method: 'POST'})
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));;
+        if (amountEgg[0].totaleggs > 0) {
+            fetch(`${url}/eggs/sell`, {method: 'POST'})
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+            window.location.reload();   
+        }else{
+            alert("You don't have enough stock.")
+        }
+    }
+
+    const handleDropEgg = () => {
+        if (amountEgg[0].totaleggs > 0) {
+            fetch(`${url}/eggs/drop`, {method: 'POST'})
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+            window.location.reload();   
+        }else{
+            alert("You don't have eggs in your stock.")
+        }
+    }
+
+    const handleDropChicken = () => {
+        if (amountChicken[0].totalchickens > 0) {
+            fetch(`${url}/chickens/drop`, {method: 'POST'})
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+            window.location.reload();   
+        }else{
+            alert("You don't have chickens in your stock.")
+        }
     }
 
   return (
@@ -87,14 +142,14 @@ export const Home = () => {
                                         <th>Quantity Eggs</th>
                                     </tr>
                                     <tr>
-                                        <td>{amount[1].productamt}</td>
-                                        <td>{amount[0].productamt}</td>
+                                        <td>{amountChicken[0].totalchickens}/10</td>
+                                        <td>{amountEgg[0].totaleggs}/10</td>
                                     </tr>
                                 </table>
                             </CardActions>
                             <CardActions>
-                                <Button size="small" onClick={handleSellChicken}>Drop Chicken</Button>
-                                <Button size="small" onClick={handleSellEgg}>Drop Egg</Button>
+                                <Button size="small" onClick={handleDropChicken}>Drop Chicken</Button>
+                                <Button size="small" onClick={handleDropEgg}>Drop Egg</Button>
                             </CardActions>
                         </Card>
                         </div>

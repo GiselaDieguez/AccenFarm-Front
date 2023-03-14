@@ -48,7 +48,7 @@ export const Header = () => {
             </Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Cash ${totalcash[0].totalcash}
+            Cash $ {totalcash[0].totalcash}
           </Typography>
           <Link to="/stadistics">
             <Button color="inherit">Statistics</Button>

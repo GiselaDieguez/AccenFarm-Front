@@ -92,3 +92,8 @@ h4{
 a:link, a:visited {
     text-decoration: none;
   }
+
+.tblProducts {
+    display: flex;
+    justify-content: center;
+}
