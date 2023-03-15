@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { url } from "../api"
 import egg1 from './styles/images/1.gif'
+import logo from './styles/images/8.png'
   
 export const Header = () => {
   const [totalcash, setCash] = useState();
@@ -44,14 +45,14 @@ export const Header = () => {
           <Typography variant="h6" 
             component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">
-              Accen Farm
+              <img src={logo} className="logo"></img>
             </Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Cash $ {totalcash[0].totalcash}
           </Typography>
           <Link to="/stadistics">
-            <Button color="inherit">Statistics</Button>
+            <Button color="inherit">stadistics</Button>
           </Link>
         </Toolbar>
       </header>

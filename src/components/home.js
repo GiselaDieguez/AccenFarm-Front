@@ -136,7 +136,7 @@ export const Home = () => {
             <Header />
                 <div className="farmBody">
                     <div className="farmCards">
-                        <Card sx={{ maxWidth: 200 }} className="eggCard">
+                        <Card sx={{ maxWidth: 210 }} className="eggCard">
                             <CardActions>
                                 <table className='quantityTbl'>
                                     <tr>
@@ -156,7 +156,7 @@ export const Home = () => {
                         </Card>
                         </div>
                         <div className="farmCards">
-                        <Card sx={{ maxWidth: 200 }} className="chickenCard">
+                        <Card sx={{ maxWidth: 220 }} className="chickenCard">
                             <CardMedia
                                 sx={{ height: 140 }}
                                 image={chicken}
@@ -164,6 +164,7 @@ export const Home = () => {
                             <CardActions>
                                 <p>Chicken. Every 10 days the chicken put an egg. Estimated life time 30 days.</p>
                             </CardActions>
+                            <br></br>
                             <CardActions className="mainPriceCard">
                                 <div className="priceCard">
                                     <h4>$200</h4>
@@ -175,7 +176,7 @@ export const Home = () => {
                                 </div>
                             </CardActions>
                         </Card>
-                        <Card sx={{ maxWidth: 200 }} className="eggCard">
+                        <Card sx={{ maxWidth: 220 }} className="eggCard">
                             <CardMedia
                                 sx={{ height: 140 }}
                                 image={egg}
