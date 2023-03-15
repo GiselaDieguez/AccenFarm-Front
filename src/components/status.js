@@ -37,7 +37,7 @@ export const Status = () => {
     {
       loading ? 
       (
-        <img src={egg} class="eggImg" style={{
+        <img src={egg} className="eggImg" style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
@@ -133,7 +133,7 @@ export const Status = () => {
         </section>
         ) 
       }
-      <Footer/>
+    <Footer/>
     </>
   );
 }

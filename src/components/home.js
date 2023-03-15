@@ -12,6 +12,7 @@ import egg from "./styles/images/6.png"
 import { url } from "../api"
 import { Footer } from "./footer";
 import egg1 from './styles/images/1.gif'
+import Countdown from 'react-countdown';
   
 export const Home = () => {
     
@@ -37,7 +38,7 @@ export const Home = () => {
             });
           }); 
         });       
-      },[loading]);
+      },[loading, amountChicken, amountEgg]);
 
 
     const handleBuyChicken = () => {
@@ -45,8 +46,7 @@ export const Home = () => {
             fetch(`${url}/chickens/buy`, {method: 'POST'})
             .then(response => response.json())
             .then(data => console.log(data))
-            .catch(error => console.error(error));
-            window.location.reload();   
+            .catch(error => console.error(error)); 
         }else{
             alert("Operation not available, verify you have enough money or have the stock available.")
         }
@@ -56,9 +56,11 @@ export const Home = () => {
         if (amountEgg[0].totaleggs < 10 && totalcash[0].totalcash > 20) {
             fetch(`${url}/eggs/buy`, {method: 'POST'})
             .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
-            window.location.reload();   
+            .then(data => 
+                setTimeout(() => {
+                    window.location.reload();
+                }, 600100)
+            )
         }else{
             alert("You can't buy more than 10 eggs.")
         }
@@ -117,7 +119,7 @@ export const Home = () => {
     {
         loading ? 
         (
-            <img src={egg1} class="eggImg" style={{
+            <img src={egg1} className="eggImg" style={{
                 position: 'absolute',
                 top: '50%',
                 left: '50%',

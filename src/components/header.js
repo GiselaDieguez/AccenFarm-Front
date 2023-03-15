@@ -26,7 +26,7 @@ export const Header = () => {
     <>
     {
       loading ? (
-        <img src={egg1} class="eggImg" style={{
+        <img src={egg1} className="eggImg" style={{
           position: 'absolute',
           top: '50%',
           left: '50%',

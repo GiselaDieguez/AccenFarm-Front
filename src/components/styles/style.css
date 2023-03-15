@@ -97,3 +97,8 @@ a:link, a:visited {
     display: flex;
     justify-content: center;
 }
+
+.countDown {
+    color:aquamarine !important;
+    font-size: 100px;
+}
