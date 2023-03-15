@@ -13,6 +13,7 @@ import { url } from "../api"
 import { Footer } from "./footer";
 import egg1 from './styles/images/1.gif'
 import Countdown from 'react-countdown';
+import gold from './styles/images/11.png'
   
 export const Home = () => {
     
@@ -20,7 +21,7 @@ export const Home = () => {
     const [amountEgg, setAmountEgg] = useState();
     const [totalcash, setCash] = useState();
     const [loading, setLoading] = useState(true)
-
+    
     useEffect(() => {
         fetch(`${url}/products/productsamt/chicken`)
           .then((response) => response.json())
@@ -40,12 +41,15 @@ export const Home = () => {
         });       
       },[loading, amountChicken, amountEgg]);
 
-
     const handleBuyChicken = () => {
         if (amountChicken[0].totalchickens < 10 && totalcash[0].totalcash > 200) {
             fetch(`${url}/chickens/buy`, {method: 'POST'})
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => 
+                setTimeout(() => {
+                    window.location.reload();
+                }, 30000)
+            )
             .catch(error => console.error(error)); 
         }else{
             alert("Operation not available, verify you have enough money or have the stock available.")
@@ -59,7 +63,7 @@ export const Home = () => {
             .then(data => 
                 setTimeout(() => {
                     window.location.reload();
-                }, 600100)
+                }, 45000)
             )
         }else{
             alert("You can't buy more than 10 eggs.")
@@ -158,42 +162,40 @@ export const Home = () => {
                         <div className="farmCards">
                         <Card sx={{ maxWidth: 220 }} className="chickenCard">
                             <CardMedia
-                                sx={{ height: 140 }}
+                                sx={{ height: 220 }}
                                 image={chicken}
                                 title="Chicken" />
                             <CardActions>
                                 <p>Chicken. Every 10 days the chicken put an egg. Estimated life time 30 days.</p>
                             </CardActions>
-                            <br></br>
                             <CardActions className="mainPriceCard">
                                 <div className="priceCard">
-                                    <h4>$200</h4>
-                                    <Button size="small" onClick={handleBuyChicken}>Buy</Button>
+                                    <h3><img src={gold} width="20px"/>200</h3>
+                                    <Button size="small" onClick={handleBuyChicken}><h3>Buy</h3></Button>
                                 </div>
                                 <div className="priceCard">
-                                    <h4>$400</h4>
-                                    <Button size="small" onClick={handleSellChicken}>Sell</Button>
+                                    <h3><img src={gold} width="20px"/>400</h3>
+                                    <Button size="small" onClick={handleSellChicken}><h3>Sell</h3></Button>
                                 </div>
                             </CardActions>
                         </Card>
                         <Card sx={{ maxWidth: 220 }} className="eggCard">
                             <CardMedia
-                                sx={{ height: 140 }}
+                                sx={{ height: 220 }}
                                 image={egg}
                                 title="Egg" />
                             <CardActions>
                                 <p>Egg. At 10 days a chicken is born. Estimated life time 30 days.
                                 </p>
                             </CardActions>
-                            <br></br>
                             <CardActions className="mainPriceCard">
                             <div className="priceCard">
-                                    <h4>$20</h4>
-                                    <Button size="small" onClick={handleBuyEgg}>Buy</Button>
+                                    <h3><img src={gold} width="20px"/>20</h3>
+                                    <Button size="small" onClick={handleBuyEgg}><h3>Buy</h3></Button>
                                 </div>
                                 <div className="priceCard">
-                                    <h4>$40</h4>
-                                    <Button size="small" onClick={handleSellEgg}>Sell</Button>
+                                    <h3><img src={gold} width="20px"/>40</h3>
+                                    <Button size="small" onClick={handleSellEgg}><h3>Sell</h3></Button>
                                 </div>
                             </CardActions>
                         </Card>

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { url } from "../api"
 import egg1 from './styles/images/1.gif'
 import logo from './styles/images/8.png'
+import gold from './styles/images/11.png'
   
 export const Header = () => {
   const [totalcash, setCash] = useState();
@@ -40,7 +41,7 @@ export const Header = () => {
           height: 'auto'}}
       />
       ) : (
-        <header position="static" >
+        <header posiition="statc" >
         <Toolbar>
           <Typography variant="h6" 
             component="div" sx={{ flexGrow: 1 }}>
@@ -48,8 +49,8 @@ export const Header = () => {
               <img src={logo} className="logo"></img>
             </Link>
           </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Cash $ {totalcash[0].totalcash}
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className='toolbar'>
+            <img src={gold} width="40px"/> {totalcash[0].totalcash}
           </Typography>
           <Link to="/stadistics">
             <Button color="inherit">stadistics</Button>
