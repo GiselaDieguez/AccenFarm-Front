@@ -123,18 +123,21 @@ export const Home = () => {
     {
         loading ? 
         (
-            <img src={egg1} className="eggImg" style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-30%, -30%)',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '20px 0px',
-                margin: '50px 0px',
-                width: '200px',
-                height: 'auto'}}
-            />
+            <div className='loadingImg'>
+                <img src={egg1} className="eggImg" style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-30%, -30%)',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: '20px 0px',
+                    margin: '50px 0px',
+                    width: '200px',
+                    height: 'auto'}}
+                
+                />
+            </div>
         ) : (
             <>
             <Header />
