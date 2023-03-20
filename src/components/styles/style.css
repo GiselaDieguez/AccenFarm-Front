@@ -112,3 +112,9 @@ a:link, a:visited {
     display: flex;
     align-items: center;
 }
+
+.loadingImg {
+    display: flex;
+    align-items: center;
+    height: 90vh;
+}
