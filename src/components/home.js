@@ -128,11 +128,9 @@ export const Home = () => {
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
-                    transform: 'translate(-30%, -30%)',
+                    transform: 'translate(-50%, -60%)',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    padding: '20px 0px',
-                    margin: '50px 0px',
                     width: '200px',
                     height: 'auto'}}
                 
