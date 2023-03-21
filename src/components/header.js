@@ -21,7 +21,7 @@ export const Header = () => {
             setCash(res)
             setLoading(false);
         });
-      },[loading]);
+      },[loading, totalcash]);
 
 
   return (

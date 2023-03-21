@@ -3,16 +3,13 @@ import "./styles/style.css";
 import { Header } from "./header";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import chicken from "./styles/images/3.jpg"
 import egg from "./styles/images/6.png"
 import { url } from "../api"
 import { Footer } from "./footer";
 import egg1 from './styles/images/1.gif'
-import Countdown from 'react-countdown';
 import gold from './styles/images/11.png'
   
 export const Home = () => {
