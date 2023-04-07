@@ -39,10 +39,10 @@ export const Home = () => {
       },[loading, amountChicken, amountEgg]);
 
     const handleBuyChicken = () => {
-        if (amountChicken[0].totalchickens < 10 && totalcash[0].totalcash > 200) {
+        if (amountChicken < 10 && totalcash > 200) {
             fetch(`${url}/chickens/buy`, {method: 'POST'})
             .then(response => response.json())
-            .then(data => 
+            .then(data => console.log(amountChicken),
                 setTimeout(() => {
                     window.location.reload();
                 }, 30000)
@@ -53,8 +53,10 @@ export const Home = () => {
         }
     }
 
+    console.log(amountChicken)
+
     const handleBuyEgg = () => {
-        if (amountEgg[0].totaleggs < 10 && totalcash[0].totalcash > 20) {
+        if (amountEgg < 10 && totalcash > 20) {
             fetch(`${url}/eggs/buy`, {method: 'POST'})
             .then(response => response.json())
             .then(data => 
@@ -68,7 +70,7 @@ export const Home = () => {
     }
 
     const handleSellChicken = () => {
-        if (amountChicken[0].totalchickens > 0) {
+        if (amountChicken > 0) {
             fetch(`${url}/chickens/sell`, {method: 'POST'})
             .then(response => response.json())
             .then(data => console.log(data))
@@ -80,7 +82,7 @@ export const Home = () => {
     }
 
     const handleSellEgg = () => {
-        if (amountEgg[0].totaleggs > 0) {
+        if (amountEgg > 0) {
             fetch(`${url}/eggs/sell`, {method: 'POST'})
             .then(response => response.json())
             .then(data => console.log(data))
@@ -92,7 +94,7 @@ export const Home = () => {
     }
 
     const handleDropEgg = () => {
-        if (amountEgg[0].totaleggs > 0) {
+        if (amountEgg > 0) {
             fetch(`${url}/eggs/drop`, {method: 'POST'})
             .then(response => response.json())
             .then(data => console.log(data))
@@ -104,7 +106,7 @@ export const Home = () => {
     }
 
     const handleDropChicken = () => {
-        if (amountChicken[0].totalchickens > 0) {
+        if (amountChicken > 0) {
             fetch(`${url}/chickens/drop`, {method: 'POST'})
             .then(response => response.json())
             .then(data => console.log(data))
@@ -146,8 +148,8 @@ export const Home = () => {
                                         <th>Quantity Eggs</th>
                                     </tr>
                                     <tr>
-                                        <td>{amountChicken[0].totalchickens}/10</td>
-                                        <td>{amountEgg[0].totaleggs}/10</td>
+                                        <td>{amountChicken}/10</td>
+                                        <td>{amountEgg}/10</td>
                                     </tr>
                                 </table>
                             </CardActions>

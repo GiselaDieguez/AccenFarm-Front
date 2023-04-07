@@ -50,7 +50,7 @@ export const Header = () => {
             </Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className='toolbar'>
-            <img src={gold} width="40px"/> {totalcash[0].totalcash}
+            <img src={gold} width="40px"/> {totalcash}
           </Typography>
           <Link to="/stadistics">
             <Button color="inherit">stadistics</Button>
