@@ -15,10 +15,11 @@ import gold from './styles/images/11.png'
   
 export const Home = () => {
     
-    const [amountChicken, setAmountChicken] = useState();
-    const [amountEgg, setAmountEgg] = useState();
-    const [totalcash, setCash] = useState();
+    const [amountChicken, setAmountChicken] = useState(0);
+    const [amountEgg, setAmountEgg] = useState(0);
+    const [totalcash, setCash] = useState(0);
     const [loading, setLoading] = useState(true)
+    const [first, setFirst] = useState(false)
     
     useEffect(() => {
         fetch(`${url}/products/productsamt/chicken`)
@@ -34,21 +35,19 @@ export const Home = () => {
               .then((res) => {
                 setCash(res)
                 setLoading(false);
+                setFirst(false)
             });
           }); 
         });       
-      },[loading, amountChicken, amountEgg]);
+      },[loading, first, totalcash]);
 
     const handleBuyChicken = () => {
         if (amountChicken < 10 && totalcash > 200) {
             fetch(`${url}/chickens/buy`, {method: 'POST'})
-            .then(response => response.json())
-            .then(data => 
-                setTimeout(() => {
-                    window.location.reload();
-                }, 30000)
-            )
-            .catch(error => console.error(error)); 
+            setFirst(true)
+            let message = "Se compró una gallina"
+            h_alert(message)
+            timer(30000)
             birthChicken()
         }else{
             alert("Operation not available, verify you have enough money or have the stock available.")
@@ -59,12 +58,10 @@ export const Home = () => {
     const handleBuyEgg = () => {
         if (amountEgg < 10 && totalcash > 20) {
             fetch(`${url}/eggs/buy`, {method: 'POST'})
-            .then(response => response.json())
-            .then(data => 
-                setTimeout(() => {
-                    window.location.reload();
-                }, 45000)
-            )
+            setFirst(true)
+            let message = "Se compró un huevo"
+            h_alert(message)
+            timer(45000)
             birthEgg()
         }else{
             alert("You can't buy more than 10 eggs.")
@@ -74,10 +71,9 @@ export const Home = () => {
     const handleSellChicken = () => {
         if (amountChicken > 0) {
             fetch(`${url}/chickens/sell`, {method: 'POST'})
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
-            window.location.reload();   
+            setFirst(true)
+            let message = "Se dropeo vendio una gallina"
+            h_alert(message)
         }else{
             alert("You don't have enough stock.")
         }
@@ -86,10 +82,9 @@ export const Home = () => {
     const handleSellEgg = () => {
         if (amountEgg > 0) {
             fetch(`${url}/eggs/sell`, {method: 'POST'})
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
-            window.location.reload();   
+            setFirst(true) 
+            let message = "Se vendio un huevo"
+            h_alert(message) 
         }else{
             alert("You don't have enough stock.")
         }
@@ -100,8 +95,9 @@ export const Home = () => {
             fetch(`${url}/eggs/drop`, {method: 'POST'})
             .then(response => response.json())
             .then(data => console.log(data))
-            .catch(error => console.error(error));
-            window.location.reload();   
+            setFirst(true)
+            let message = "Se dropeo una huevo"
+            h_alert(message)
         }else{
             alert("You don't have eggs in your stock.")
         }
@@ -112,39 +108,59 @@ export const Home = () => {
             fetch(`${url}/chickens/drop`, {method: 'POST'})
             .then(response => response.json())
             .then(data => console.log(data))
-            .catch(error => console.error(error));
-            window.location.reload();   
+            setFirst(true)
+            let message = "Se dropeo una gallina"
+            h_alert(message)
         }else{
             alert("You don't have chickens in your stock.")
         }
     }
     const birthChicken = () => {
         const div = document.getElementById('alerts');
-        const p = document.createElement('p');
+        const p = document.createElement('b');
         const texto = document.createTextNode('En 30 segundos va a nacer un huevo');
-      
+    
         p.appendChild(texto);
         div.appendChild(p);
 
         setTimeout(() => {
             div.removeChild(p);
-          }, 2000);
+            }, 4000);
     }
 
     const birthEgg = () => {
         const div = document.getElementById('alerts');
-        const p = document.createElement('p');
+        const p = document.createElement('b');
         const texto = document.createTextNode('En 45 segundos va a nacer una gallina');
-      
+    
         p.appendChild(texto);
         div.appendChild(p);
 
         setTimeout(() => {
             div.removeChild(p);
-          }, 2000);
+            }, 4000);
     }
 
-  return (
+    const timer = (timer) => {
+        setTimeout(() => {
+            window.location.reload(); 
+        }, timer);
+    }
+
+    const h_alert = (text) => {
+        const div = document.getElementById('alerts');
+        const p = document.createElement('b');
+        const texto = document.createTextNode(text);
+    
+        p.appendChild(texto);
+        div.appendChild(p);
+
+        setTimeout(() => {
+            div.removeChild(p);
+            }, 2500);
+    }
+
+    return (
     <>
     {
         loading ? 
@@ -164,10 +180,10 @@ export const Home = () => {
             </div>
         ) : (
             <>
-            <Header />
+            <Header totalcash={totalcash} loading={loading}/>
                 <div className="farmBody">
                     <div className="farmCards">
-                        <Card sx={{ maxWidth: 210 }} className="eggCard">
+                        <Card sx={{ maxWidth: 200 }} className="eggCard">
                             <CardActions>
                                 <table className='quantityTbl'>
                                     <tbody>
@@ -189,29 +205,30 @@ export const Home = () => {
                         </Card>
                         </div>
                         <div className="farmCards">
-                        <Card sx={{ maxWidth: 220 }} className="chickenCard">
-                            <CardMedia
-                                sx={{ height: 220 }}
-                                image={chicken}
+                        <Card sx={{ maxWidth: 180 }} className="chickenCard">
+                            <img
+                                width="180"
+                                height="192"
+                                src={chicken}
                                 title="Chicken" />
                             <CardActions>
                                 <p>Chicken. Every 10 days the chicken put an egg. Estimated life time 30 days.</p>
                             </CardActions>
                             <CardActions className="mainPriceCard">
                                 <div className="priceCard">
-                                    <h3><img src={gold} width="20px"/>200</h3>
+                                    <h3 className='price'><img src={gold} width="20px"/>200</h3>
                                     <Button size="small" onClick={handleBuyChicken}><h3>Buy</h3></Button>
                                 </div>
                                 <div className="priceCard">
-                                    <h3><img src={gold} width="20px"/>400</h3>
+                                    <h3 className='price'><img src={gold} width="20px"/>400</h3>
                                     <Button size="small" onClick={handleSellChicken}><h3>Sell</h3></Button>
                                 </div>
                             </CardActions>
                         </Card>
-                        <Card sx={{ maxWidth: 220 }} className="eggCard">
-                            <CardMedia
-                                sx={{ height: 220 }}
-                                image={egg}
+                        <Card sx={{ maxWidth: 180 }} className="eggCard">
+                            <img
+                                width="180"
+                                src={egg}
                                 title="Egg" />
                             <CardActions>
                                 <p>Egg. At 10 days a chicken is born. Estimated life time 30 days.
@@ -219,23 +236,23 @@ export const Home = () => {
                             </CardActions>
                             <CardActions className="mainPriceCard">
                             <div className="priceCard">
-                                    <h3><img src={gold} width="20px"/>20</h3>
+                                    <h3 className='price'><img src={gold} width="20px"/>20</h3>
                                     <Button size="small" onClick={handleBuyEgg}><h3>Buy</h3></Button>
                                 </div>
                                 <div className="priceCard">
-                                    <h3><img src={gold} width="20px"/>40</h3>
+                                    <h3 className='price'><img src={gold} width="20px"/>40</h3>
                                     <Button size="small" onClick={handleSellEgg}><h3>Sell</h3></Button>
                                 </div>
                             </CardActions>
                         </Card>
                     </div>
                 </div>  
+                <div id='alerts'></div>
+                <Footer/>
             </>
             
         )
     }
-    <div id='alerts'></div>
-    <Footer/>
     </>
   );
 }

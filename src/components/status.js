@@ -4,13 +4,23 @@ import Header from "./header";
 import { Footer } from "./footer";
 import { url } from "../api"
 import egg from './styles/images/1.gif'
-
   
 export const Status = () => {
   const [buy, setBuy] = useState()
   const [sell, setSell] = useState()
   const [drop, setDrop] = useState()
   const [loading, setLoading] = useState(true)
+  const [totalcash, setCash] = useState();
+
+
+    useEffect(() => {
+        fetch(`${url}/cash/all`)
+          .then((response) => response.json())
+          .then((res) => {
+            setCash(res)
+        });
+      },[loading, totalcash]);
+
 
   useEffect(() => {
   fetch(`${url}/farm/list/buy`)
@@ -38,23 +48,26 @@ export const Status = () => {
 
   return (
     <>
-    <Header/>
+    <Header totalcash={totalcash}/>
     {
       loading ? 
       (
-        <img src={egg} className="eggImg" style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-30%, -30%)',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '20px 0px',
-          margin: '50px 0px',
-          width: '200px',
-          height: 'auto'
-      }}></img>
+        <div className='loadingImg'>
+          <img src={egg} className="eggImg" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-30%, -30%)',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '20px 0px',
+            margin: '50px 0px',
+            width: '200px',
+            height: 'auto'
+        }}></img>
+      </div>
       ):(
+        <>
         <section className='tblProducts'>
           <div className='statisticsTbl'>
             <div className='list-group'>
@@ -136,9 +149,10 @@ export const Status = () => {
             </div>
           </div>
         </section>
+        <Footer/>
+        </>
         ) 
       }
-    <Footer/>
     </>
   );
 }
