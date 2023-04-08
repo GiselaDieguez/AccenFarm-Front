@@ -31,6 +31,11 @@ export const Status = () => {
   });
 }, [loading]);
 
+  const getDate = (date) => {
+  let newDate = date.replace('T', ' ')
+  return newDate.slice(2, -10)
+  }
+
   return (
     <>
     <Header/>
@@ -55,26 +60,26 @@ export const Status = () => {
             <div className='list-group'>
               <table className='stTable'>
                 <caption>Purchased Products</caption>
-                  <tr className='trTable'>
-                    <th className='tdTable'>N°</th>
-                    <th className='tdTable'>Time</th>
-                    <th className='tdTable'>Product</th>
-                    <th className='tdTable'>Price</th>
-                    <th className='tdTable'>Amount</th>
-                  </tr>
-                  {
-                buy.map((buyproduct, index) => (
-                  < >
-                  <tr key={index}>
-                    <td className='tdTable'>{index + 1}</td>
-                    <td className='tdTable'>{buyproduct.time}</td>
-                    <td className='tdTable'>{buyproduct.productnm}</td>
-                    <td className='tdTable'>{buyproduct.productprice}</td>
-                    <td className='tdTable'>{buyproduct.transactionamt}</td>
-                  </tr>
-                  </>
-                ))
-              }
+                <tbody>
+                    <tr className='trTable'>
+                      <th className='tdTable'>N°</th>
+                      <th className='tdTable'>Time</th>
+                      <th className='tdTable'>Product</th>
+                      <th className='tdTable'>Price</th>
+                    </tr>
+                    {
+                  buy.map((buyproduct, index) => (
+                  
+                    <tr key={index}>
+                      <td className='tdTable'>{index + 1}</td>
+                      <td className='tdTable'>{getDate(buyproduct.time)}</td>
+                      <td className='tdTable'>{buyproduct.productnm}</td>
+                      <td className='tdTable'>{buyproduct.productprice}</td>
+                    </tr>
+                
+                  ))
+                }
+              </tbody>
               </table>
             </div>
           </div>
@@ -82,26 +87,26 @@ export const Status = () => {
             <div className='list-group'>
               <table className='stTable'>
                 <caption>Sold Products</caption>
-                  <tr className='trTable'>
-                    <th className='tdTable'>N°</th>
-                    <th className='tdTable'>Time</th>
-                    <th className='tdTable'>Product</th>
-                    <th className='tdTable'>Price</th>
-                    <th className='tdTable'>Amount</th>
-                  </tr>
-                  {
-                sell.map((sellproduct, index) => (
-                  < >
-                  <tr key={index}>
-                    <td className='tdTable'>{index + 1}</td>
-                    <td className='tdTable'>{sellproduct.time}</td>
-                    <td className='tdTable'>{sellproduct.productnm}</td>
-                    <td className='tdTable'>{sellproduct.productprice}</td>
-                    <td className='tdTable'>{sellproduct.transactionamt}</td>
-                  </tr>
-                  </>
-                ))
-              }
+                <tbody>
+                    <tr className='trTable'>
+                      <th className='tdTable'>N°</th>
+                      <th className='tdTable'>Time</th>
+                      <th className='tdTable'>Product</th>
+                      <th className='tdTable'>Price</th>
+                    </tr>
+                    {
+                  sell.map((sellproduct, index) => (
+                  
+                    <tr key={index}>
+                      <td className='tdTable'>{index + 1}</td>
+                      <td className='tdTable'>{getDate(sellproduct.time)}</td>
+                      <td className='tdTable'>{sellproduct.productnm}</td>
+                      <td className='tdTable'>{sellproduct.productprice}</td>
+                    </tr>
+                  
+                  ))
+                }
+              </tbody>
               </table>
             </div>
           </div>
@@ -109,24 +114,24 @@ export const Status = () => {
             <div className='list-group'>
               <table className='stTable'>
                 <caption>Deleted Products</caption>
-                  <tr className='trTable'>
-                    <th className='tdTable'>N°</th>
-                    <th className='tdTable'>Time</th>
-                    <th className='tdTable'>Product</th>
-                    <th className='tdTable'>Amount</th>
-                  </tr>
-                  {
-                drop.map((dropproduct, index) => (
-                  < >
-                  <tr key={index}>
-                    <td className='tdTable'>{index + 1}</td>
-                    <td className='tdTable'>{dropproduct.time}</td>
-                    <td className='tdTable'>{dropproduct.productnm}</td>
-                    <td className='tdTable'>{dropproduct.transactionamt}</td>
-                  </tr>
-                  </>
-                ))
-              }
+                  <tbody>
+                    <tr className='trTable'>
+                      <th className='tdTable'>N°</th>
+                      <th className='tdTable'>Time</th>
+                      <th className='tdTable'>Product</th>
+                    </tr>
+                    {
+                  drop.map((dropproduct, index) => (
+                    
+                    <tr key={index}>
+                      <td className='tdTable'>{index + 1}</td>
+                      <td className='tdTable'>{getDate(dropproduct.time)}</td>
+                      <td className='tdTable'>{dropproduct.productnm}</td>
+                    </tr>
+                    
+                  ))
+                }
+                </tbody>
               </table>
             </div>
           </div>

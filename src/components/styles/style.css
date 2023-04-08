@@ -64,17 +64,17 @@ h4{
     overflow-y: scroll;
 }
 .stTable {
-    font-size: 30px;
+    font-size: 20px;
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     text-align: center;
-    margin: 10px;
+    margin: 4px;
 }
 .trTable {
     text-decoration: underline;
 }
 .tdTable {
-    padding: 20px;
+    padding: 10px;
 }
 
 .footer {

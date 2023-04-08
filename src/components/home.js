@@ -11,6 +11,7 @@ import { url } from "../api"
 import { Footer } from "./footer";
 import egg1 from './styles/images/1.gif'
 import gold from './styles/images/11.png'
+
   
 export const Home = () => {
     
@@ -42,18 +43,18 @@ export const Home = () => {
         if (amountChicken < 10 && totalcash > 200) {
             fetch(`${url}/chickens/buy`, {method: 'POST'})
             .then(response => response.json())
-            .then(data => console.log(amountChicken),
+            .then(data => 
                 setTimeout(() => {
                     window.location.reload();
                 }, 30000)
             )
             .catch(error => console.error(error)); 
+            birthChicken()
         }else{
             alert("Operation not available, verify you have enough money or have the stock available.")
         }
     }
 
-    console.log(amountChicken)
 
     const handleBuyEgg = () => {
         if (amountEgg < 10 && totalcash > 20) {
@@ -64,6 +65,7 @@ export const Home = () => {
                     window.location.reload();
                 }, 45000)
             )
+            birthEgg()
         }else{
             alert("You can't buy more than 10 eggs.")
         }
@@ -116,6 +118,31 @@ export const Home = () => {
             alert("You don't have chickens in your stock.")
         }
     }
+    const birthChicken = () => {
+        const div = document.getElementById('alerts');
+        const p = document.createElement('p');
+        const texto = document.createTextNode('En 30 segundos va a nacer un huevo');
+      
+        p.appendChild(texto);
+        div.appendChild(p);
+
+        setTimeout(() => {
+            div.removeChild(p);
+          }, 2000);
+    }
+
+    const birthEgg = () => {
+        const div = document.getElementById('alerts');
+        const p = document.createElement('p');
+        const texto = document.createTextNode('En 45 segundos va a nacer una gallina');
+      
+        p.appendChild(texto);
+        div.appendChild(p);
+
+        setTimeout(() => {
+            div.removeChild(p);
+          }, 2000);
+    }
 
   return (
     <>
@@ -143,14 +170,16 @@ export const Home = () => {
                         <Card sx={{ maxWidth: 210 }} className="eggCard">
                             <CardActions>
                                 <table className='quantityTbl'>
-                                    <tr>
-                                        <th>Quantity Chicken</th>
-                                        <th>Quantity Eggs</th>
-                                    </tr>
-                                    <tr>
-                                        <td>{amountChicken}/10</td>
-                                        <td>{amountEgg}/10</td>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <th>Quantity Chicken</th>
+                                            <th>Quantity Eggs</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{amountChicken}/10</td>
+                                            <td>{amountEgg}/10</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </CardActions>
                             <CardActions>
@@ -205,6 +234,7 @@ export const Home = () => {
             
         )
     }
+    <div id='alerts'></div>
     <Footer/>
     </>
   );
