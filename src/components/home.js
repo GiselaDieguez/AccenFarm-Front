@@ -22,11 +22,11 @@ export const Home = () => {
     const [first, setFirst] = useState(false)
     
     useEffect(() => {
-        fetch(`${url}/products/productsamt/chicken`)
+        fetch(`${url}/farm/validation/stockChicken`)
           .then((response) => response.json())
           .then((res) => {
             setAmountChicken(res)
-            fetch(`${url}/products/productsamt/egg`)
+            fetch(`${url}/farm/validation/stockEgg`)
             .then((response) => response.json())
             .then((res) => {
               setAmountEgg(res)
