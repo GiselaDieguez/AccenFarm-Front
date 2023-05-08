@@ -12,7 +12,7 @@ export const Status = () => {
   const [loading, setLoading] = useState(true)
   const [totalcash, setCash] = useState();
 
-
+  console.log(buy)
     useEffect(() => {
         fetch(`${url}/cash/all`)
           .then((response) => response.json())
@@ -85,9 +85,9 @@ export const Status = () => {
                   
                     <tr key={index}>
                       <td className='tdTable'>{index + 1}</td>
-                      <td className='tdTable'>{getDate(buyproduct.time)}</td>
-                      <td className='tdTable'>{buyproduct.productnm}</td>
-                      <td className='tdTable'>{buyproduct.productprice}</td>
+                      <td className='tdTable'>{getDate(buyproduct[0])}</td>
+                      <td className='tdTable'>{buyproduct[1]}</td>
+                      <td className='tdTable'>{buyproduct[2]}</td>
                     </tr>
                 
                   ))
@@ -112,9 +112,9 @@ export const Status = () => {
                   
                     <tr key={index}>
                       <td className='tdTable'>{index + 1}</td>
-                      <td className='tdTable'>{getDate(sellproduct.time)}</td>
-                      <td className='tdTable'>{sellproduct.productnm}</td>
-                      <td className='tdTable'>{sellproduct.productprice}</td>
+                      <td className='tdTable'>{getDate(sellproduct[0])}</td>
+                      <td className='tdTable'>{sellproduct[1]}</td>
+                      <td className='tdTable'>{sellproduct[2]}</td>
                     </tr>
                   
                   ))
@@ -138,8 +138,8 @@ export const Status = () => {
                     
                     <tr key={index}>
                       <td className='tdTable'>{index + 1}</td>
-                      <td className='tdTable'>{getDate(dropproduct.time)}</td>
-                      <td className='tdTable'>{dropproduct.productnm}</td>
+                      <td className='tdTable'>{getDate(dropproduct[0])}</td>
+                      <td className='tdTable'>{dropproduct[1]}</td>
                     </tr>
                     
                   ))
@@ -152,7 +152,7 @@ export const Status = () => {
         <Footer/>
         </>
         ) 
-      }
+              }
     </>
   );
 }

@@ -45,7 +45,7 @@ export const Home = () => {
         if (amountChicken < 10 && totalcash > 200) {
             fetch(`${url}/chickens/buy`, {method: 'POST'})
             setFirst(true)
-            let message = "Se compró una gallina"
+            let message = "Bought a chicken"
             h_alert(message)
             timer(30000)
             birthChicken()
@@ -59,7 +59,7 @@ export const Home = () => {
         if (amountEgg < 10 && totalcash > 20) {
             fetch(`${url}/eggs/buy`, {method: 'POST'})
             setFirst(true)
-            let message = "Se compró un huevo"
+            let message = "Bought a egg"
             h_alert(message)
             timer(45000)
             birthEgg()
@@ -72,7 +72,7 @@ export const Home = () => {
         if (amountChicken > 0) {
             fetch(`${url}/chickens/sell`, {method: 'POST'})
             setFirst(true)
-            let message = "Se dropeo vendio una gallina"
+            let message = "Sold a chicken"
             h_alert(message)
         }else{
             alert("You don't have enough stock.")
@@ -83,7 +83,7 @@ export const Home = () => {
         if (amountEgg > 0) {
             fetch(`${url}/eggs/sell`, {method: 'POST'})
             setFirst(true) 
-            let message = "Se vendio un huevo"
+            let message = "Sold a egg"
             h_alert(message) 
         }else{
             alert("You don't have enough stock.")
@@ -96,7 +96,7 @@ export const Home = () => {
             .then(response => response.json())
             .then(data => console.log(data))
             setFirst(true)
-            let message = "Se dropeo una huevo"
+            let message = "Drop a egg"
             h_alert(message)
         }else{
             alert("You don't have eggs in your stock.")
@@ -109,7 +109,7 @@ export const Home = () => {
             .then(response => response.json())
             .then(data => console.log(data))
             setFirst(true)
-            let message = "Se dropeo una gallina"
+            let message = "Drop a chicken"
             h_alert(message)
         }else{
             alert("You don't have chickens in your stock.")
@@ -118,7 +118,7 @@ export const Home = () => {
     const birthChicken = () => {
         const div = document.getElementById('alerts');
         const p = document.createElement('b');
-        const texto = document.createTextNode('En 30 segundos va a nacer un huevo');
+        const texto = document.createTextNode('An Egg is going to hatch in 30 seconds');
     
         p.appendChild(texto);
         div.appendChild(p);
@@ -131,7 +131,7 @@ export const Home = () => {
     const birthEgg = () => {
         const div = document.getElementById('alerts');
         const p = document.createElement('b');
-        const texto = document.createTextNode('En 45 segundos va a nacer una gallina');
+        const texto = document.createTextNode('An Chicken is going to hatch in 45 seconds');
     
         p.appendChild(texto);
         div.appendChild(p);
